@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Piano LED Visualizer - Performance</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
+</head>
+<body class="bg-gray-100 font-sans flex flex-col min-h-screen">
+    <!-- Header Section -->
+    <nav class="bg-indigo-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="font-bold text-xl">IoT Piano Visualizer</a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-4">
+                    <a href="index.html" class="hover:text-indigo-200 transition-colors duration-300">Home</a>
+                    <a href="performance.html" class="hover:text-indigo-200 transition-colors duration-300">Performance</a>
+                    <a href="settings.html" class="hover:text-indigo-200 transition-colors duration-300">Settings</a>
+                    <a href="help.html" class="hover:text-indigo-200 transition-colors duration-300">Help</a>
+                    <a href="contact.html" class="hover:text-indigo-200 transition-colors duration-300">Contact Support</a>
+                    <a href="#" class="hover:text-indigo-200 transition-colors duration-300">Log Out</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+    
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-3">
+                <a href="index.html" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Home</a>
+                <a href="performance.html" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Performance</a>
+                <a href="settings.html" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Settings</a>
+                <a href="help.html" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Help</a>
+                <a href="contact.html" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Contact Support</a>
+                <a href="#" class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Log Out</a>
+            </div>
+        </div>
+    </nav>
+    
+    
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto mt-4 sm:mt-8 px-4">
+        <!-- Performance Overview Section -->
+        <section id="performance-overview" class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Performance Overview</h2>
+            <p class="text-sm sm:text-base text-gray-600 mb-4">Your recent performance data is displayed below.</p>
+            <div class="overflow-x-auto">
+                <table class="w-full text-xs sm:text-sm">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-600 uppercase leading-normal">
+                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Date</th>
+                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Song</th>
+                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Score</th>
+                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Mode</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 font-light">
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">2024-08-30</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">Happy Birthday</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">85%</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">Tutorial</td>
+                        </tr>
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">2024-08-29</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">Twinkle Twinkle Little Star</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">90%</td>
+                            <td class="py-2 px-3 sm:py-3 sm:px-6">Play</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Performance Graph Section -->
+        <section id="performance-graph" class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Performance Graph</h2>
+            <p class="text-sm sm:text-base text-gray-600 mb-4">Graphical representation of your progress over time.</p>
+            <div id="graph-placeholder" class="w-full h-64 bg-gray-200 text-center flex items-center justify-center">
+                [Graph Placeholder]
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center text-sm">
+            <p class="mt-2">&copy; 2024 IoT Piano LED Visualizer. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
