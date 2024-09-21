@@ -98,3 +98,31 @@
         .catch(error => console.error('Error fetching data:', error));
     });
 
+    window.onload = function() {
+        checkLoginStatus(); // Check if the user is logged in
+    }
+    
+    function checkLoginStatus() {
+        if (localStorage.getItem('loggedIn') !== 'true') {
+            window.location.href = 'login.html'; // Redirect to login if not logged in
+        } else {
+            //document.getElementById('welcomeMessage').innerText = `Welcome, ${localStorage.getItem('userName')}!`;
+        }
+    }
+
+    function logout() {
+        // Clear the login state from localStorage
+        localStorage.removeItem('loggedIn');
+        localStorage.removeItem('userName');
+        // Optionally, show a message or alert
+        
+  Swal.fire({
+    title: "Success",
+    text: "You have been logged out",
+    icon: "success",
+  });
+    
+        // Redirect to the login page
+        window.location.href = 'login.html';
+    }
+    

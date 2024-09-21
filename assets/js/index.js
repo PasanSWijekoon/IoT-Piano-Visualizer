@@ -172,8 +172,7 @@ function loadSongs() {
     });
 }
 
-// Call the function to load songs when the page loads
-window.onload = loadSongs;
+
 
 function playSong() {
     // Get the select element
@@ -245,3 +244,34 @@ function fetchStatus() {
 // Fetch the status every 5 seconds
 setInterval(fetchStatus, 5000);
 
+
+
+function checkLoginStatus() {
+  if (localStorage.getItem('loggedIn') !== 'true') {
+      window.location.href = 'login.html'; // Redirect to login if not logged in
+  } else {
+      //document.getElementById('welcomeMessage').innerText = `Welcome, ${localStorage.getItem('userName')}!`;
+  }
+}
+
+function logout() {
+  // Clear the login state from localStorage
+  localStorage.removeItem('loggedIn');
+  localStorage.removeItem('userName');
+
+  Swal.fire({
+    title: "Success",
+    text: "You have been logged out",
+    icon: "success",
+  });
+ 
+
+  // Redirect to the login page
+  window.location.href = 'login.html';
+}
+
+
+window.onload = function() {
+  checkLoginStatus(); // Check if the user is logged in
+  loadSongs();
+}
