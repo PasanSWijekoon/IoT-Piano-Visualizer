@@ -122,9 +122,12 @@ function submitTypedNotes() {
     })
       .then((response) => response.json())
       .then((data) => {
-        document.getElementById("note-feedback").textContent =
-          "Notes submitted successfully!";
-        document.getElementById("note-feedback").style.color = "green";
+        Swal.fire({
+          title: "Success",
+          text: "Notes submitted successfully!",
+          icon: "success",
+        });
+        location.reload();
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -229,8 +232,8 @@ function fetchStatus() {
         .then(response => response.json())
         .then(data => {
             currentStatus.textContent = "Playing : " + data.song_name;
-            const isPlaying = true;
-            if (isPlaying) {
+            const status = data.status;
+            if (status=="on") {
                 statusIndicator.classList.remove('bg-red-500');
                 statusIndicator.classList.add('bg-green-500');
             } else {
