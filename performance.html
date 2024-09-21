@@ -27,7 +27,7 @@
                     <a href="performance.html"
                         class="hover:text-indigo-200 transition-colors duration-300">Performance</a>
                     <a href="about.html" class="hover:text-indigo-200 transition-colors duration-300">About</a>
-                    <a href="login.html" class="hover:text-indigo-200 transition-colors duration-300">Log Out</a>
+                    <a href="#" class="hover:text-indigo-200 transition-colors duration-300" onclick="logout();">Log Out</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -44,8 +44,8 @@
                     class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Performance</a>
                 <a href="about.html"
                     class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">About</a>
-                <a href="login.html"
-                    class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300">Log
+                <a href="#"
+                    class="block py-2 px-4 text-sm text-left bg-indigo-700 rounded-lg mb-2 hover:bg-indigo-800 transition-colors duration-300" onclick="logout();">Log
                     Out</a>
             </div>
         </div>
@@ -69,19 +69,8 @@
                             <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Mode</th>
                         </tr>
                     </thead>
-                    <tbody class="text-gray-600 font-light">
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">2024-08-30</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">Happy Birthday</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">85%</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">Tutorial</td>
-                        </tr>
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">2024-08-29</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">Twinkle Twinkle Little Star</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">90%</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6">Play</td>
-                        </tr>
+                    <tbody id="performance-data" class="text-gray-600 font-light">
+                        <!-- Data will be loaded here dynamically -->
                     </tbody>
                 </table>
             </div>
@@ -91,9 +80,7 @@
         <section id="performance-graph" class="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-4 sm:mb-8">
             <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Performance Graph</h2>
             <p class="text-sm sm:text-base text-gray-600 mb-4">Graphical representation of your progress over time.</p>
-            <div id="graph-placeholder" class="w-full h-64 bg-gray-200 text-center flex items-center justify-center">
-                [Graph Placeholder]
-            </div>
+            <canvas id="performanceChart" class="w-full h-64"></canvas>
         </section>
     </main>
 
@@ -113,6 +100,10 @@
             mobileMenu.classList.toggle('hidden');
         });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="assets/js/performance.js"></script>
+
 </body>
 
 </html>
