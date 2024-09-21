@@ -68,38 +68,29 @@
             </div>
         </div>
 
-        <!-- Notes Upload Section -->
-        <div class="grid sm:grid-cols-2 gap-4 sm:gap-8">
-            <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-                <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Upload Your Piano Notes</h2>
-                <form action="upload.php" method="post" enctype="multipart/form-data">
-                    <div class="flex items-center justify-center w-full">
-                        <label
-                            class="w-full flex flex-col items-center px-4 py-4 sm:py-6 bg-white rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-indigo-600 hover:text-white">
-                            <i class="fas fa-cloud-upload-alt text-2xl sm:text-3xl"></i>
-                            <span class="mt-2 text-sm sm:text-base leading-normal">Select a file</span>
-                            <input type='file' name="noteFile" accept=".txt, .midi, .xml" class="hidden" required />
-                        </label>
-                    </div>
-                    <button type="submit"
-                        class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">Upload
-                        Notes</button>
-                </form>
-                <p id="upload-feedback" class="mt-2 text-xs sm:text-sm text-gray-600">File uploaded successfully!</p>
-            </div>
+        <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+            <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Type Your Notes and Durations</h2>
 
-            <!-- Type Your Notes Section -->
-            <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
-                <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Type Your Notes</h2>
-                <input type="text" id="song-name" class="w-full p-2 mb-2 border rounded text-sm sm:text-base"
-                    placeholder="Enter song name, e.g., Happy Birthday">
-                <textarea id="typed-notes" rows="4" class="w-full p-2 border rounded text-sm sm:text-base"
-                    placeholder="Type notes here, e.g., C4 E4 G4">C4 E4 G4</textarea>
-                <button onclick="submitTypedNotes()"
-                    class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">Submit
-                    Notes</button>
-                <p id="note-feedback" class="mt-2 text-xs sm:text-sm text-gray-600">Notes received successfully!</p>
-            </div>
+            <!-- Song name input -->
+            <input type="text" id="song-name" class="w-full p-2 mb-2 border rounded text-sm sm:text-base"
+                placeholder="Enter song name, e.g., Happy Birthday">
+
+            <!-- Notes input -->
+            <textarea id="typed-notes" rows="4" class="w-full p-2 border rounded text-sm sm:text-base"
+                placeholder="Type notes here, e.g., C4 E4 G4"></textarea>
+
+            <!-- Durations input -->
+            <textarea id="typed-durations" rows="4" class="w-full p-2 border rounded text-sm sm:text-base"
+                placeholder="Type durations here, e.g., 400 400 800 400"></textarea>
+
+            <!-- Submit button -->
+            <button onclick="submitTypedNotes();"
+                class="mt-4 w-full bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 transition duration-300">
+                Submit Notes
+            </button>
+
+            <!-- Feedback -->
+            <p id="note-feedback" class="mt-2 text-xs sm:text-sm text-gray-600"></p>
         </div>
 
         <!-- Select Song to Play Section -->
@@ -108,9 +99,7 @@
             <div class="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
                 <select id="song-list"
                     class="w-full sm:w-1/3 p-2 border rounded mb-4 sm:mb-0 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                    <option value="happy_birthday.mid">Happy Birthday</option>
-                    <option value="twinkle_twinkle.mid">Twinkle Twinkle Little Star</option>
-                    <option value="fur_elise.mid">Fur Elise</option>
+                    <!-- Dynamically populated song list will go here -->
                 </select>
                 <div class="flex items-center space-x-4 mb-4 sm:mb-0 w-full sm:w-auto">
                     <label class="inline-flex items-center">
@@ -124,42 +113,17 @@
                         <span class="ml-2 text-sm sm:text-base">Play Mode</span>
                     </label>
                 </div>
-                <button onclick="playSong()"
+                <button onclick="playSong();"
                     class="w-full sm:w-auto bg-indigo-500 text-white py-2 px-4 rounded hover:bg-indigo-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
                     Play Selected Song
                 </button>
             </div>
-            <p id="playback-feedback" class="mt-4 text-xs sm:text-sm text-gray-600">Playing: Twinkle Twinkle Little Star
-                in Tutorial Mode</p>
+            <p id="playback-feedback" class="mt-4 text-xs sm:text-sm text-gray-600"></p>
         </div>
 
         <!-- Manage Your Notes Section -->
         <div class="mt-4 sm:mt-8 bg-white rounded-lg shadow-md p-4 sm:p-6">
-            <h2 class="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">Manage Your Notes</h2>
-            <div class="overflow-x-auto">
-                <table class="w-full text-xs sm:text-sm">
-                    <thead>
-                        <tr class="bg-gray-200 text-gray-600 uppercase leading-normal">
-                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Note Name</th>
-                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-left">Type</th>
-                            <th class="py-2 px-3 sm:py-3 sm:px-6 text-center">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody id="notes-list" class="text-gray-600 font-light">
-                        <tr class="border-b border-gray-200 hover:bg-gray-100">
-                            <td class="py-2 px-3 sm:py-3 sm:px-6 text-left whitespace-nowrap">Happy Birthday</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6 text-left">Uploaded</td>
-                            <td class="py-2 px-3 sm:py-3 sm:px-6 text-center">
-                                <button
-                                    class="bg-blue-500 text-white py-1 px-2 rounded mr-1 hover:bg-blue-600 transition duration-300 text-xs sm:text-sm">Play</button>
-                                <button
-                                    class="bg-red-500 text-white py-1 px-2 rounded hover:bg-red-600 transition duration-300 text-xs sm:text-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <!-- More rows here -->
-                    </tbody>
-                </table>
-            </div>
+            
         </div>
     </main>
 
@@ -171,69 +135,10 @@
     </footer>
 
     <script>
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // Function to submit typed notes
-        function submitTypedNotes() {
-            const typedNotes = document.getElementById('typed-notes').value;
-            // Send the typed notes to the server (implementation needed)
-            document.getElementById('note-feedback').innerText = 'Notes submitted successfully!';
-        }
-
-        // Function to play the selected song
-        function playSong() {
-            const selectedSong = document.getElementById('song-list').value;
-            const selectedMode = document.querySelector('input[name="mode"]:checked').value;
-            // Implement the logic to play the selected song
-            document.getElementById('playback-feedback').innerText = `Playing: ${selectedSong} in ${selectedMode} Mode`;
-        }
-
-        // Simulated function to handle feedback (replace with real data fetching as needed)
-        function simulateFeedback() {
-            // document.getElementById('current-status').innerText = 'Playing';
-            document.getElementById('upload-feedback').innerText = 'Upload a note file to get started.';
-            document.getElementById('note-feedback').innerText = '';
-            document.getElementById('playback-feedback').innerText = 'Select a song and mode to play.';
-        }
-
-        // Initialize page with sample feedback
-        simulateFeedback();
-
-
-        /////New 
-
-
-        function fetchStatus() {
-
-            const statusIndicator = document.getElementById('status-indicator');
-            const currentStatus = document.getElementById('current-status');
-
-            fetch('https://mypiono.sysoftgroups.com/song.php')  // Replace with your server URL
-                .then(response => response.json())
-                .then(data => {
-                    currentStatus.textContent = "Playing : " + data.song_name;
-                    const isPlaying = true;
-                    if (isPlaying) {
-                        statusIndicator.classList.remove('bg-red-500');
-                        statusIndicator.classList.add('bg-green-500');
-                    } else {
-                        statusIndicator.classList.remove('bg-green-500');
-                        statusIndicator.classList.add('bg-red-500');
-                    }
-                })
-                .catch(error => console.error('Error fetching status:', error));
-        }
-
-        // Fetch the status every 5 seconds
-        setInterval(fetchStatus, 5000);
-
+        
     </script>
+
+    <script src="assets/js/index.js"></script>
 </body>
 
 </html>
