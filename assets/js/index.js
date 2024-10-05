@@ -42,10 +42,10 @@ function validateInputs() {
     (note) => !validNotes.includes(note.trim())
   );
 
-  // Validate durations (ensure they are between 400 and 1000)
+  // Validate durations (ensure they are between 100 and 5000)
   const invalidDurations = typedDurations.filter((duration) => {
     const num = parseInt(duration);
-    return isNaN(num) || num < 400 || num > 1000;
+    return isNaN(num) || num < 100 || num > 5000;
   });
 
   // Validate if the number of notes matches the number of durations
@@ -59,7 +59,7 @@ function validateInputs() {
   if (invalidDurations.length > 0) {
     feedbackMessage += `Invalid durations detected: ${invalidDurations.join(
       ", "
-    )} (should be between 400 and 1000). `;
+    )} (should be between 100 and 5000). `;
   }
   if (notesDurationsMismatch) {
     feedbackMessage += `The number of notes (${typedNotes.length}) and durations (${typedDurations.length}) must match.`;
@@ -87,9 +87,9 @@ function submitTypedNotes() {
     .value.split(" ")
     .map((duration) => parseInt(duration));
 
-  // Validate durations (400 to 1000) and ensure number of notes matches number of durations
+  // Validate durations (100 to 5000) and ensure number of notes matches number of durations
   const validDurations = durations.filter(
-    (duration) => duration >= 400 && duration <= 1000
+    (duration) => duration >= 100 && duration <= 5000
   );
   const notesDurationsMatch = notes.length === durations.length;
 
@@ -141,7 +141,7 @@ function submitTypedNotes() {
       errorMessage += "The number of notes and durations must match. ";
     }
     if (validDurations.length !== durations.length) {
-      errorMessage += "All durations must be between 400 and 1000.";
+      errorMessage += "All durations must be between 100 and 5000.";
     }
     document.getElementById("note-feedback").textContent = errorMessage;
     document.getElementById("note-feedback").style.color = "red";
